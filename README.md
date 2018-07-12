@@ -1,2 +1,2 @@
 # gowaves
-Waves Platform Golang library.
+Go library for Waves blockchain platform
