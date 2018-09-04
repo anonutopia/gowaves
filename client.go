@@ -116,3 +116,21 @@ func (w *WavesNodeClient) BlocksHeight() (*BlocksHeightResponse, error) {
 	err := w.DoRequest("/blocks/height", http.MethodGet, nil, bhr)
 	return bhr, err
 }
+
+func (w *WavesNodeClient) TransactionsAddressLimit(address string, limit uint) ([][]TransactionsAddressLimitResponse, error) {
+	var talr [][]TransactionsAddressLimitResponse
+	err := w.DoRequest(fmt.Sprintf("/transactions/address/%s/limit/%d", address, limit), http.MethodGet, nil, talr)
+	return talr, err
+}
+
+func (w *WavesNodeClient) AssetsDistribution(assetId string) (interface{}, error) {
+	var adr interface{}
+	err := w.DoRequest(fmt.Sprintf("/assets/%s/distribution", assetId), http.MethodGet, nil, adr)
+	return adr, err
+}
+
+func (w *WavesNodeClient) AssetsBalance(address string, assetId string) (*AssetsBalanceResponse, error) {
+	abr := &AssetsBalanceResponse{}
+	err := w.DoRequest(fmt.Sprintf("/assets/balance/%s/%s", address, assetId), http.MethodGet, nil, abr)
+	return abr, err
+}

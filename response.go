@@ -107,3 +107,34 @@ type BlocksAtResponse struct {
 type BlocksHeightResponse struct {
 	Height int `json:"height"`
 }
+
+type TransactionsAddressLimitResponse struct {
+	Type            int      `json:"type"`
+	ID              string   `json:"id"`
+	Sender          string   `json:"sender"`
+	SenderPublicKey string   `json:"senderPublicKey"`
+	Fee             int      `json:"fee"`
+	Timestamp       int64    `json:"timestamp"`
+	Proofs          []string `json:"proofs,omitempty"`
+	Version         int      `json:"version"`
+	AssetID         string   `json:"assetId"`
+	Attachment      string   `json:"attachment"`
+	TransferCount   int      `json:"transferCount,omitempty"`
+	TotalAmount     int      `json:"totalAmount,omitempty"`
+	Transfers       []struct {
+		Recipient string `json:"recipient"`
+		Amount    int    `json:"amount"`
+	} `json:"transfers,omitempty"`
+	Height     int         `json:"height"`
+	Signature  string      `json:"signature,omitempty"`
+	Recipient  string      `json:"recipient,omitempty"`
+	FeeAssetID interface{} `json:"feeAssetId,omitempty"`
+	FeeAsset   interface{} `json:"feeAsset,omitempty"`
+	Amount     int         `json:"amount,omitempty"`
+}
+
+type AssetsBalanceResponse struct {
+	Address string `json:"address"`
+	AssetID string `json:"assetId"`
+	Balance int64  `json:"balance"`
+}
