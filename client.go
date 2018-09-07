@@ -119,7 +119,7 @@ func (w *WavesNodeClient) BlocksHeight() (*BlocksHeightResponse, error) {
 
 func (w *WavesNodeClient) TransactionsAddressLimit(address string, limit uint) ([][]TransactionsAddressLimitResponse, error) {
 	var talr [][]TransactionsAddressLimitResponse
-	err := w.DoRequest(fmt.Sprintf("/transactions/address/%s/limit/%d", address, limit), http.MethodGet, nil, talr)
+	err := w.DoRequest(fmt.Sprintf("/transactions/address/%s/limit/%d", address, limit), http.MethodGet, nil, &talr)
 	return talr, err
 }
 
