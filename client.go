@@ -125,7 +125,7 @@ func (w *WavesNodeClient) TransactionsAddressLimit(address string, limit uint) (
 
 func (w *WavesNodeClient) AssetsDistribution(assetId string) (interface{}, error) {
 	var adr interface{}
-	err := w.DoRequest(fmt.Sprintf("/assets/%s/distribution", assetId), http.MethodGet, nil, adr)
+	err := w.DoRequest(fmt.Sprintf("/assets/%s/distribution", assetId), http.MethodGet, nil, &adr)
 	return adr, err
 }
 
