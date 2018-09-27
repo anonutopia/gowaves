@@ -2,7 +2,7 @@ package gowaves
 
 type AssetsTransferRequest struct {
 	Amount     int    `json:"amount"`
-	AssetID    string `json:"assetId"`
+	AssetID    string `json:"assetId,omitempty"`
 	Attachment string `json:"attachment,omitempty"`
 	Fee        int    `json:"fee"`
 	FeeAssetID string `json:"feeAssetId,omitempty"`

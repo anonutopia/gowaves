@@ -109,32 +109,32 @@ type BlocksHeightResponse struct {
 }
 
 type TransactionsAddressLimitResponse struct {
-	Type            int         `json:"type"`
-	ID              string      `json:"id"`
-	Sender          string      `json:"sender"`
-	SenderPublicKey string      `json:"senderPublicKey"`
-	Fee             int         `json:"fee"`
-	Timestamp       int64       `json:"timestamp"`
-	Signature       string      `json:"signature,omitempty"`
-	Version         int         `json:"version"`
-	Recipient       string      `json:"recipient,omitempty"`
-	AssetID         string      `json:"assetId"`
-	FeeAssetID      interface{} `json:"feeAssetId,omitempty"`
-	FeeAsset        interface{} `json:"feeAsset,omitempty"`
-	Amount          int         `json:"amount,omitempty"`
-	Attachment      string      `json:"attachment"`
-	Height          int         `json:"height"`
-	Proofs          []string    `json:"proofs,omitempty"`
-	TransferCount   int         `json:"transferCount,omitempty"`
-	TotalAmount     int         `json:"totalAmount,omitempty"`
+	Type            int      `json:"type"`
+	ID              string   `json:"id"`
+	Sender          string   `json:"sender"`
+	SenderPublicKey string   `json:"senderPublicKey"`
+	Fee             int      `json:"fee"`
+	Timestamp       int64    `json:"timestamp"`
+	Proofs          []string `json:"proofs,omitempty"`
+	Version         int      `json:"version"`
+	AssetID         string   `json:"assetId"`
+	Attachment      string   `json:"attachment"`
+	TransferCount   int      `json:"transferCount,omitempty"`
+	TotalAmount     int      `json:"totalAmount,omitempty"`
 	Transfers       []struct {
 		Recipient string `json:"recipient"`
 		Amount    int    `json:"amount"`
 	} `json:"transfers,omitempty"`
+	Height     int         `json:"height"`
+	Signature  string      `json:"signature,omitempty"`
+	Recipient  string      `json:"recipient,omitempty"`
+	FeeAssetID interface{} `json:"feeAssetId,omitempty"`
+	FeeAsset   interface{} `json:"feeAsset,omitempty"`
+	Amount     int         `json:"amount,omitempty"`
 }
 
 type AssetsBalanceResponse struct {
 	Address string `json:"address"`
 	AssetID string `json:"assetId"`
-	Balance int    `json:"balance"`
+	Balance int64  `json:"balance"`
 }
