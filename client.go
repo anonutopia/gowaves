@@ -26,10 +26,19 @@ func (w *WavesNodeClient) DoRequest(uri string, method string, body interface{},
 
 	if body != nil {
 		b := new(bytes.Buffer)
-		json.NewEncoder(b).Encode(body)
+		err = json.NewEncoder(b).Encode(body)
+		if err != nil {
+			return err
+		}
 		req, err = http.NewRequest(method, url, b)
+		if err != nil {
+			return err
+		}
 	} else {
 		req, err = http.NewRequest(method, url, nil)
+		if err != nil {
+			return err
+		}
 	}
 
 	req.Header.Set("X-API-Key", w.ApiKey)
@@ -50,6 +59,7 @@ func (w *WavesNodeClient) DoRequest(uri string, method string, body interface{},
 			log.Printf("[WavesNodeClient.DoRequest] Error, body: %s", string(body))
 		}
 		json.Unmarshal(body, resp)
+		// log.Println(string(body))
 	} else {
 		return err
 	}
