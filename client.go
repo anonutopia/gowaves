@@ -3,6 +3,7 @@ package gowaves
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -57,6 +58,7 @@ func (w *WavesNodeClient) DoRequest(uri string, method string, body interface{},
 		}
 		if res.StatusCode != 200 {
 			log.Printf("[WavesNodeClient.DoRequest] Error, body: %s", string(body))
+			return errors.New(string(body))
 		}
 		json.Unmarshal(body, resp)
 		// log.Println(string(body))
