@@ -135,14 +135,18 @@ func (w *WavesNodeClient) TransactionsAddressLimit(address string, limit uint) (
 	return talr, err
 }
 
-func (w *WavesNodeClient) AssetsDistribution(assetId string) (interface{}, error) {
-	var adr interface{}
-	err := w.DoRequest(fmt.Sprintf("/assets/%s/distribution", assetId), http.MethodGet, nil, &adr)
-	return adr, err
-}
-
 func (w *WavesNodeClient) AssetsBalance(address string, assetId string) (*AssetsBalanceResponse, error) {
 	abr := &AssetsBalanceResponse{}
 	err := w.DoRequest(fmt.Sprintf("/assets/balance/%s/%s", address, assetId), http.MethodGet, nil, abr)
 	return abr, err
+}
+
+func (w *WavesNodeClient) AssetsBalanceDistribution(assetId string, height int, limit int, after string) (*AssetsBalanceDistributionResponse, error) {
+	abdr := &AssetsBalanceDistributionResponse{}
+	url := fmt.Sprintf("/assets/%s/distribution/%s/limit/%s", assetId, strconv.Itoa(height), strconv.Itoa(limit))
+	if len(after) > 0 {
+		url = fmt.Sprintf("%s?after=%s", url, after)
+	}
+	err := w.DoRequest(url, http.MethodGet, nil, abdr)
+	return abdr, err
 }

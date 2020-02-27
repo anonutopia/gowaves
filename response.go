@@ -138,3 +138,9 @@ type AssetsBalanceResponse struct {
 	AssetID string `json:"assetId"`
 	Balance int64  `json:"balance"`
 }
+
+type AssetsBalanceDistributionResponse struct {
+	HasNext  bool           `json:"hasNext"`
+	LastItem string         `json:"lastItem"`
+	Items    map[string]int `json:"items,omitempty"`
+}
