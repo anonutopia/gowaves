@@ -23,3 +23,22 @@ type AssetsMassTransferRequest struct {
 	} `json:"transfers"`
 	Version int `json:"version"`
 }
+
+type AssetOrderRequest struct {
+	SenderPublicKey  string `json:"senderPublicKey"`
+	MatcherPublicKey string `json:"matcherPublicKey"`
+	AssetPair        struct {
+		AmountAsset string `json:"amountAsset"`
+		PriceAsset  string `json:"priceAsset"`
+	} `json:"assetPair"`
+	OrderType         string   `json:"orderType"`
+	Amount            int      `json:"amount"`
+	Price             int      `json:"price"`
+	Timestamp         int      `json:"timestamp"`
+	Expiration        int      `json:"expiration"`
+	MatcherFee        int      `json:"matcherFee"`
+	MatcherFeeAssetID string   `json:"matcherFeeAssetId"`
+	Proofs            []string `json:"proofs"`
+	Signature         string   `json:"signature"`
+	Version           int      `json:"version"`
+}

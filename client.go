@@ -117,6 +117,12 @@ func (w *WavesNodeClient) AssetsMassTransfer(amtr *AssetsMassTransferRequest) (*
 	return amtres, err
 }
 
+func (w *WavesNodeClient) AssetsOrder(aor *AssetOrderRequest) (*AssetsOrderResponse, error) {
+	aors := &AssetsOrderResponse{}
+	err := w.DoRequest("/assets/order", http.MethodPost, aor, aors)
+	return aors, err
+}
+
 func (w *WavesNodeClient) BlocksAt(n uint) (*BlocksAtResponse, error) {
 	bar := &BlocksAtResponse{}
 	err := w.DoRequest(fmt.Sprintf("/blocks/at/%d", n), http.MethodGet, nil, bar)

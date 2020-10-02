@@ -77,6 +77,27 @@ type AssetsMassTransferResponse struct {
 	Version int `json:"version"`
 }
 
+type AssetsOrderResponse struct {
+	Version          int    `json:"version"`
+	ID               string `json:"id"`
+	Sender           string `json:"sender"`
+	SenderPublicKey  string `json:"senderPublicKey"`
+	MatcherPublicKey string `json:"matcherPublicKey"`
+	AssetPair        struct {
+		AmountAsset string      `json:"amountAsset"`
+		PriceAsset  interface{} `json:"priceAsset"`
+	} `json:"assetPair"`
+	OrderType         string      `json:"orderType"`
+	Amount            int         `json:"amount"`
+	Price             int         `json:"price"`
+	Timestamp         int64       `json:"timestamp"`
+	Expiration        int64       `json:"expiration"`
+	MatcherFee        int         `json:"matcherFee"`
+	Signature         string      `json:"signature"`
+	Proofs            []string    `json:"proofs"`
+	MatcherFeeAssetID interface{} `json:"matcherFeeAssetId"`
+}
+
 type BlocksAtResponse struct {
 	Version      int    `json:"version"`
 	Timestamp    int64  `json:"timestamp"`
