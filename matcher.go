@@ -42,7 +42,9 @@ func (w *WavesMatcherClient) DoRequest(uri string, method string, body interface
 		}
 	}
 
-	req.Header.Set("X-API-Key", w.ApiKey)
+	if len(w.ApiKey) > 0 {
+		req.Header.Set("X-API-Key", w.ApiKey)
+	}
 	req.Header.Set("Content-Type", "application/json")
 
 	if err != nil {
@@ -73,4 +75,10 @@ func (w *WavesMatcherClient) OrderbookStatus(amountAssetID string, priceAssetID 
 	osr := &OrderbookStatusResponse{}
 	err := w.DoRequest(fmt.Sprintf("/matcher/orderbook/%s/%s/status", amountAssetID, priceAssetID), http.MethodGet, nil, osr)
 	return osr, err
+}
+
+func (w *WavesMatcherClient) Orderbook(aor *AssetsOrderResponse) (*OrderbookResponse, error) {
+	ors := &OrderbookResponse{}
+	err := w.DoRequest("/matcher/orderbook", http.MethodPost, aor, ors)
+	return ors, err
 }

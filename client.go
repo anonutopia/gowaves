@@ -117,7 +117,7 @@ func (w *WavesNodeClient) AssetsMassTransfer(amtr *AssetsMassTransferRequest) (*
 	return amtres, err
 }
 
-func (w *WavesNodeClient) AssetsOrder(aor *AssetOrderRequest) (*AssetsOrderResponse, error) {
+func (w *WavesNodeClient) AssetsOrder(aor *AssetsOrderRequest) (*AssetsOrderResponse, error) {
 	aors := &AssetsOrderResponse{}
 	err := w.DoRequest("/assets/order", http.MethodPost, aor, aors)
 	return aors, err

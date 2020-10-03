@@ -24,7 +24,7 @@ type AssetsMassTransferRequest struct {
 	Version int `json:"version"`
 }
 
-type AssetOrderRequest struct {
+type AssetsOrderRequest struct {
 	SenderPublicKey  string `json:"senderPublicKey"`
 	MatcherPublicKey string `json:"matcherPublicKey"`
 	AssetPair        struct {
@@ -37,7 +37,7 @@ type AssetOrderRequest struct {
 	Timestamp         int      `json:"timestamp"`
 	Expiration        int      `json:"expiration"`
 	MatcherFee        int      `json:"matcherFee"`
-	MatcherFeeAssetID string   `json:"matcherFeeAssetId"`
+	MatcherFeeAssetID *string  `json:"matcherFeeAssetId"`
 	Proofs            []string `json:"proofs"`
 	Signature         string   `json:"signature"`
 	Version           int      `json:"version"`
