@@ -36,3 +36,19 @@ type OrderbookResponse struct {
 	} `json:"message"`
 	Status string `json:"status"`
 }
+
+type OrderbookPairResponse struct {
+	Timestamp int64 `json:"timestamp"`
+	Pair      struct {
+		AmountAsset string `json:"amountAsset"`
+		PriceAsset  string `json:"priceAsset"`
+	} `json:"pair"`
+	Bids []struct {
+		Amount uint64 `json:"amount"`
+		Price  uint64 `json:"price"`
+	} `json:"bids"`
+	Asks []struct {
+		Amount uint64 `json:"amount"`
+		Price  uint64 `json:"price"`
+	} `json:"asks"`
+}
