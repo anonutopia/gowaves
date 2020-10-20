@@ -52,3 +52,8 @@ type OrderbookPairResponse struct {
 		Price  uint64 `json:"price"`
 	} `json:"asks"`
 }
+
+type OrderbookCancelResponse struct {
+	Success bool   `json:"success"`
+	Status  string `json:"status"`
+}

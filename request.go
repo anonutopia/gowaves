@@ -26,6 +26,7 @@ type AssetsMassTransferRequest struct {
 
 type AssetsOrderRequest struct {
 	SenderPublicKey  string `json:"senderPublicKey"`
+	Sender           string `json:"sender"`
 	MatcherPublicKey string `json:"matcherPublicKey"`
 	AssetPair        struct {
 		AmountAsset string `json:"amountAsset"`

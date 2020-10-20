@@ -83,6 +83,18 @@ func (w *WavesMatcherClient) Orderbook(aor *AssetsOrderResponse) (*OrderbookResp
 	return ors, err
 }
 
+func (w *WavesMatcherClient) OrderbookMarket(aor *AssetsOrderResponse) (*OrderbookResponse, error) {
+	ors := &OrderbookResponse{}
+	err := w.DoRequest("/matcher/orderbook/market", http.MethodPost, aor, ors)
+	return ors, err
+}
+
+func (w *WavesMatcherClient) OrderbookCancel(amountAssetID string, priceAssetID string, ocr *OrderbookCancelRequest) (*OrderbookCancelResponse, error) {
+	ocrs := &OrderbookCancelResponse{}
+	err := w.DoRequest(fmt.Sprintf("/matcher/orderbook/%s/%s/cancel", amountAssetID, priceAssetID), http.MethodPost, ocr, ocrs)
+	return ocrs, err
+}
+
 func (w *WavesMatcherClient) OrderbookPair(amountAssetID string, priceAssetID string, depth int) (*OrderbookPairResponse, error) {
 	opr := &OrderbookPairResponse{}
 	err := w.DoRequest(fmt.Sprintf("/matcher/orderbook/%s/%s?depth=%d", amountAssetID, priceAssetID, depth), http.MethodGet, nil, opr)
