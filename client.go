@@ -19,8 +19,15 @@ type WavesNodeClient struct {
 
 func (w *WavesNodeClient) DoRequest(uri string, method string, body interface{}, resp interface{}) error {
 	cl := http.Client{}
+	var url string
 
-	url := fmt.Sprintf("http://%s:%s%s", w.Host, strconv.Itoa(int(w.Port)), uri)
+	if w.Port != 80 {
+		url = fmt.Sprintf("%s:%s%s", w.Host, strconv.Itoa(int(w.Port)), uri)
+	} else {
+		url = fmt.Sprintf("%s%s", w.Host, uri)
+	}
+
+	log.Println(url)
 
 	var req *http.Request
 	var err error
