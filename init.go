@@ -1,14 +1,11 @@
 package gowaves
 
-import (
-// "log"
-)
+import "log"
 
 var WNC *WavesNodeClient
 
 func init() {
-	WNC = &WavesNodeClient{}
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
-	WNC.Host = DEFAULT_HOST
-	WNC.Port = DEFAULT_PORT
+	WNC = initWNC()
 }

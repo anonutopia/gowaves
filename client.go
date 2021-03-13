@@ -15,6 +15,17 @@ type WavesNodeClient struct {
 	Host   string
 	Port   uint
 	ApiKey string
+	Debug  bool
+}
+
+func initWNC() *WavesNodeClient {
+	wnc := &WavesNodeClient{}
+
+	wnc.Host = DefaultURL
+	wnc.Port = DefaultPort
+	wnc.Debug = false
+
+	return wnc
 }
 
 func (w *WavesNodeClient) DoRequest(uri string, method string, body interface{}, resp interface{}) error {
@@ -27,7 +38,9 @@ func (w *WavesNodeClient) DoRequest(uri string, method string, body interface{},
 		url = fmt.Sprintf("%s%s", w.Host, uri)
 	}
 
-	log.Println(url)
+	if w.Debug {
+		log.Println(url)
+	}
 
 	var req *http.Request
 	var err error
@@ -64,11 +77,13 @@ func (w *WavesNodeClient) DoRequest(uri string, method string, body interface{},
 			return err
 		}
 		if res.StatusCode != 200 {
-			log.Printf("[WavesNodeClient.DoRequest] Error, body: %s", string(body))
 			return errors.New(string(body))
 		}
 		json.Unmarshal(body, resp)
-		// log.Println(string(body))
+
+		if w.Debug {
+			log.Println(string(body))
+		}
 	} else {
 		return err
 	}

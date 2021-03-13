@@ -59,11 +59,13 @@ func (w *WavesMatcherClient) DoRequest(uri string, method string, body interface
 			return err
 		}
 		if res.StatusCode != 200 {
-			log.Printf("[WavesMatcherClient.DoRequest] Error, body: %s", string(body))
 			return errors.New(string(body))
 		}
 		json.Unmarshal(body, resp)
-		// log.Println(string(body))
+
+		if WNC.Debug {
+			log.Println(string(body))
+		}
 	} else {
 		return err
 	}
