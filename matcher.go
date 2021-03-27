@@ -17,6 +17,15 @@ type WavesMatcherClient struct {
 	ApiKey string
 }
 
+func initWMC() *WavesMatcherClient {
+	wnc := &WavesMatcherClient{}
+
+	wnc.Host = DefaultMatcherURL
+	wnc.Port = DefaultMatcherPort
+
+	return wnc
+}
+
 func (w *WavesMatcherClient) DoRequest(uri string, method string, body interface{}, resp interface{}) error {
 	cl := http.Client{}
 
