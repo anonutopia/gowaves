@@ -152,6 +152,50 @@ type TransactionsAddressLimitResponse struct {
 	FeeAssetID interface{} `json:"feeAssetId,omitempty"`
 	FeeAsset   interface{} `json:"feeAsset,omitempty"`
 	Amount     int         `json:"amount,omitempty"`
+	Order1     struct {
+		Version          int    `json:"version"`
+		ID               string `json:"id"`
+		Sender           string `json:"sender"`
+		SenderPublicKey  string `json:"senderPublicKey"`
+		MatcherPublicKey string `json:"matcherPublicKey"`
+		AssetPair        struct {
+			AmountAsset string      `json:"amountAsset"`
+			PriceAsset  interface{} `json:"priceAsset"`
+		} `json:"assetPair"`
+		OrderType         string      `json:"orderType"`
+		Amount            int         `json:"amount"`
+		Price             int         `json:"price"`
+		Timestamp         int64       `json:"timestamp"`
+		Expiration        int64       `json:"expiration"`
+		MatcherFee        int         `json:"matcherFee"`
+		Signature         string      `json:"signature"`
+		Proofs            []string    `json:"proofs"`
+		MatcherFeeAssetID interface{} `json:"matcherFeeAssetId"`
+	} `json:"order1"`
+	Order2 struct {
+		Version          int    `json:"version"`
+		ID               string `json:"id"`
+		Sender           string `json:"sender"`
+		SenderPublicKey  string `json:"senderPublicKey"`
+		MatcherPublicKey string `json:"matcherPublicKey"`
+		AssetPair        struct {
+			AmountAsset string      `json:"amountAsset"`
+			PriceAsset  interface{} `json:"priceAsset"`
+		} `json:"assetPair"`
+		OrderType         string      `json:"orderType"`
+		Amount            int64       `json:"amount"`
+		Price             int         `json:"price"`
+		Timestamp         int64       `json:"timestamp"`
+		Expiration        int64       `json:"expiration"`
+		MatcherFee        int         `json:"matcherFee"`
+		Signature         string      `json:"signature"`
+		Proofs            []string    `json:"proofs"`
+		MatcherFeeAssetID interface{} `json:"matcherFeeAssetId"`
+	} `json:"order2"`
+	Price             int    `json:"price"`
+	BuyMatcherFee     int    `json:"buyMatcherFee"`
+	SellMatcherFee    int    `json:"sellMatcherFee"`
+	ApplicationStatus string `json:"applicationStatus"`
 }
 
 type AssetsBalanceResponse struct {
