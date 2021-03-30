@@ -9,6 +9,8 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+
+	"github.com/wavesplatform/gowaves/pkg/proto"
 )
 
 type WavesMatcherClient struct {
@@ -89,6 +91,12 @@ func (w *WavesMatcherClient) OrderbookStatus(amountAssetID string, priceAssetID 
 }
 
 func (w *WavesMatcherClient) Orderbook(aor *AssetsOrderResponse) (*OrderbookResponse, error) {
+	ors := &OrderbookResponse{}
+	err := w.DoRequest("/matcher/orderbook", http.MethodPost, aor, ors)
+	return ors, err
+}
+
+func (w *WavesMatcherClient) OrderbookAlt(aor *proto.OrderV1) (*OrderbookResponse, error) {
 	ors := &OrderbookResponse{}
 	err := w.DoRequest("/matcher/orderbook", http.MethodPost, aor, ors)
 	return ors, err
