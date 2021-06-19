@@ -141,7 +141,7 @@ type TransactionsAddressLimitResponse struct {
 	AssetID         string   `json:"assetId"`
 	Attachment      string   `json:"attachment"`
 	TransferCount   int      `json:"transferCount,omitempty"`
-	TotalAmount     int      `json:"totalAmount,omitempty"`
+	Total           int      `json:"total,omitempty"`
 	Transfers       []struct {
 		Recipient string `json:"recipient"`
 		Amount    int    `json:"amount"`
