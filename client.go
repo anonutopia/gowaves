@@ -32,7 +32,7 @@ func (w *WavesNodeClient) DoRequest(uri string, method string, body interface{},
 	cl := http.Client{}
 	var url string
 
-	if w.Port != 80 {
+	if w.Port != 80 && w.Port != 443 {
 		url = fmt.Sprintf("%s:%s%s", w.Host, strconv.Itoa(int(w.Port)), uri)
 	} else {
 		url = fmt.Sprintf("%s%s", w.Host, uri)
