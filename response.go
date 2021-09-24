@@ -209,3 +209,9 @@ type AssetsBalanceDistributionResponse struct {
 	LastItem string         `json:"lastItem"`
 	Items    map[string]int `json:"items,omitempty"`
 }
+
+type DataResponse []struct {
+	Key   string `json:"key"`
+	Type  string `json:"type"`
+	Value string `json:"value"`
+}

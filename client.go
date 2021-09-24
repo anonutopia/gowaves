@@ -178,3 +178,9 @@ func (w *WavesNodeClient) AssetsBalanceDistribution(assetId string, height int, 
 	err := w.DoRequest(url, http.MethodGet, nil, abdr)
 	return abdr, err
 }
+
+func (w *WavesNodeClient) AddressesData(address string, key string) ([]*DataResponse, error) {
+	var adr []*DataResponse
+	err := w.DoRequest(fmt.Sprintf("/addresses/data/%s/%s", address, key), http.MethodGet, nil, adr)
+	return adr, err
+}
