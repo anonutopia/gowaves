@@ -10,7 +10,6 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
-	"strings"
 )
 
 type WavesNodeClient struct {
@@ -185,7 +184,7 @@ func (w *WavesNodeClient) AddressesData(address string, key string) (*DataRespon
 	adr := &DataResponse{}
 	ur := fmt.Sprintf("/addresses/data/%s", address)
 	if len(key) > 0 {
-		ur += fmt.Sprintf("?matches=%s", url.QueryEscape(strings.Replace(key, "\\", "\\\\", -1)))
+		ur += fmt.Sprintf("?matches=%s", url.QueryEscape(key))
 	}
 	log.Println(ur)
 	err := w.DoRequest(ur, http.MethodGet, nil, adr)
