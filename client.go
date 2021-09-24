@@ -181,6 +181,10 @@ func (w *WavesNodeClient) AssetsBalanceDistribution(assetId string, height int, 
 
 func (w *WavesNodeClient) AddressesData(address string, key string) ([]*DataResponse, error) {
 	var adr []*DataResponse
-	err := w.DoRequest(fmt.Sprintf("/addresses/data/%s/%s", address, key), http.MethodGet, nil, adr)
+	url := fmt.Sprintf("/addresses/data/%s", address)
+	if len(key) > 0 {
+		url += fmt.Sprintf("?matches=%s", key)
+	}
+	err := w.DoRequest(url, http.MethodGet, nil, adr)
 	return adr, err
 }
