@@ -179,8 +179,8 @@ func (w *WavesNodeClient) AssetsBalanceDistribution(assetId string, height int, 
 	return abdr, err
 }
 
-func (w *WavesNodeClient) AddressesData(address string, key string) ([]*DataResponse, error) {
-	var adr []*DataResponse
+func (w *WavesNodeClient) AddressesData(address string, key string) (*DataResponse, error) {
+	adr := &DataResponse{}
 	url := fmt.Sprintf("/addresses/data/%s", address)
 	if len(key) > 0 {
 		url += fmt.Sprintf("?matches=%s", key)
