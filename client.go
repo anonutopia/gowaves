@@ -185,7 +185,7 @@ func (w *WavesNodeClient) AddressesData(address string, key string) (*DataRespon
 	adr := &DataResponse{}
 	ur := fmt.Sprintf("/addresses/data/%s", address)
 	if len(key) > 0 {
-		ur += fmt.Sprintf("?matches=%s", regexp.QuoteMeta(url.QueryEscape(key)))
+		ur += fmt.Sprintf("?matches=%s", url.QueryEscape(regexp.QuoteMeta(key)))
 	}
 	log.Println(ur)
 	err := w.DoRequest(ur, http.MethodGet, nil, adr)
