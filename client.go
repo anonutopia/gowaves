@@ -11,6 +11,7 @@ import (
 	"net/url"
 	"regexp"
 	"strconv"
+	"strings"
 )
 
 type WavesNodeClient struct {
@@ -185,7 +186,7 @@ func (w *WavesNodeClient) AddressesData(address string, key string) (*DataRespon
 	adr := &DataResponse{}
 	ur := fmt.Sprintf("/addresses/data/%s", address)
 	if len(key) > 0 {
-		ur += fmt.Sprintf("?matches=%s", url.QueryEscape(regexp.QuoteMeta(key)))
+		ur += fmt.Sprintf("?matches=%s", url.QueryEscape(strings.Replace(key, "\\", "\\\\", -1))))
 	}
 	log.Println(ur)
 	err := w.DoRequest(ur, http.MethodGet, nil, adr)
