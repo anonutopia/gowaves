@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"strconv"
 )
 
@@ -181,10 +182,10 @@ func (w *WavesNodeClient) AssetsBalanceDistribution(assetId string, height int, 
 
 func (w *WavesNodeClient) AddressesData(address string, key string) (*DataResponse, error) {
 	adr := &DataResponse{}
-	url := fmt.Sprintf("/addresses/data/%s", address)
+	ur := fmt.Sprintf("/addresses/data/%s", address)
 	if len(key) > 0 {
-		url += fmt.Sprintf("?matches=%s", key)
+		ur += fmt.Sprintf("?matches=%s", url.QueryEscape(key))
 	}
-	err := w.DoRequest(url, http.MethodGet, nil, adr)
+	err := w.DoRequest(ur, http.MethodGet, nil, adr)
 	return adr, err
 }
