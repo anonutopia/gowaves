@@ -122,6 +122,12 @@ func (w *WavesNodeClient) AddressValidate(address string) (*AddressValidateRespo
 	return avr, err
 }
 
+func (w *WavesNodeClient) Addresses() (*AddressesResponse, error) {
+	ar := &AddressesResponse{}
+	err := w.DoRequest("/addresses", http.MethodGet, nil, ar)
+	return ar, err
+}
+
 func (w *WavesNodeClient) AddressesBalance(address string) (*AddressesBalanceResponse, error) {
 	abr := &AddressesBalanceResponse{}
 	err := w.DoRequest(fmt.Sprintf("/addresses/balance/%s", address), http.MethodGet, nil, abr)

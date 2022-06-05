@@ -32,6 +32,8 @@ type NodeStopResponse struct {
 	Stopped bool `json:"stopped"`
 }
 
+type AddressesResponse []string
+
 type AddressValidateResponse struct {
 	Address string `json:"address"`
 	Valid   bool   `json:"valid"`
