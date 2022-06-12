@@ -200,6 +200,6 @@ func (w *WavesNodeClient) AddressesData(address string, key string) (*DataRespon
 
 func (w *WavesNodeClient) UtilsHashSecure(message string) (*UtilsHashSecureResponse, error) {
 	uhsr := &UtilsHashSecureResponse{}
-	err := w.DoRequest("/assets/masstransfer", http.MethodPost, message, uhsr, false)
+	err := w.DoRequest("/utils/hash/secure", http.MethodPost, message, uhsr, false)
 	return uhsr, err
 }
