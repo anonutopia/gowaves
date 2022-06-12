@@ -195,3 +195,9 @@ func (w *WavesNodeClient) AddressesData(address string, key string) (*DataRespon
 	err := w.DoRequest(ur, http.MethodGet, nil, adr)
 	return adr, err
 }
+
+func (w *WavesNodeClient) UtilsHashSecure(message string) (*UtilsHashSecureResponse, error) {
+	uhsr := &UtilsHashSecureResponse{}
+	err := w.DoRequest("/assets/masstransfer", http.MethodPost, message, uhsr)
+	return uhsr, err
+}

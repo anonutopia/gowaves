@@ -217,3 +217,8 @@ type DataResponse []struct {
 	Type  string `json:"type"`
 	Value string `json:"value"`
 }
+
+type UtilsHashSecureResponse struct {
+	Message string `json:"message"`
+	Hash    string `json:"hash"`
+}
