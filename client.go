@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 )
 
 type WavesNodeClient struct {
@@ -47,14 +48,22 @@ func (w *WavesNodeClient) DoRequest(uri string, method string, body interface{},
 	var err error
 
 	if body != nil {
-		b := new(bytes.Buffer)
-		err = json.NewEncoder(b).Encode(body)
-		if err != nil {
-			return err
-		}
-		req, err = http.NewRequest(method, url, b)
-		if err != nil {
-			return err
+		if fmt.Sprintf("%T", body) == "string" {
+			b := strings.NewReader(fmt.Sprintf("%v", body))
+			req, err = http.NewRequest(method, url, b)
+			if err != nil {
+				return err
+			}
+		} else {
+			b := new(bytes.Buffer)
+			err = json.NewEncoder(b).Encode(body)
+			if err != nil {
+				return err
+			}
+			req, err = http.NewRequest(method, url, b)
+			if err != nil {
+				return err
+			}
 		}
 	} else {
 		req, err = http.NewRequest(method, url, nil)
