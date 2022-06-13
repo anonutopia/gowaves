@@ -145,6 +145,12 @@ func (w *WavesNodeClient) AddressesBalance(address string) (*AddressesBalanceRes
 	return abr, err
 }
 
+func (w *WavesNodeClient) AddressesBalanceConfirmations(address string, confirmations int) (*AddressesBalanceResponse, error) {
+	abcr := &AddressesBalanceResponse{}
+	err := w.DoRequest(fmt.Sprintf("/addresses/balance/%s/%d", address, confirmations), http.MethodGet, nil, abcr, false)
+	return abcr, err
+}
+
 func (w *WavesNodeClient) AssetsTransfer(atr *AssetsTransferRequest) (*AssetsTransferResponse, error) {
 	atres := &AssetsTransferResponse{}
 	err := w.DoRequest("/assets/transfer", http.MethodPost, atr, atres, true)
