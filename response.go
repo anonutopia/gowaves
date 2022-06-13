@@ -218,6 +218,12 @@ type DataResponse []struct {
 	Value string `json:"value"`
 }
 
+type DataKeyResponse struct {
+	Key   string `json:"key"`
+	Type  string `json:"type"`
+	Value int    `json:"value"`
+}
+
 type UtilsHashSecureResponse struct {
 	Message string `json:"message"`
 	Hash    string `json:"hash"`

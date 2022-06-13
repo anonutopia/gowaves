@@ -207,6 +207,12 @@ func (w *WavesNodeClient) AddressesData(address string, key string) (*DataRespon
 	return adr, err
 }
 
+func (w *WavesNodeClient) AddressesDataKey(address string, key string) (*DataKeyResponse, error) {
+	dkr := &DataKeyResponse{}
+	err := w.DoRequest(fmt.Sprintf("/addresses/data/%s/%s", address, key), http.MethodGet, nil, dkr, false)
+	return dkr, err
+}
+
 func (w *WavesNodeClient) UtilsHashSecure(message string) (*UtilsHashSecureResponse, error) {
 	uhsr := &UtilsHashSecureResponse{}
 	err := w.DoRequest("/utils/hash/secure", http.MethodPost, message, uhsr, false)
