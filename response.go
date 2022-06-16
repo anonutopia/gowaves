@@ -213,15 +213,15 @@ type AssetsBalanceDistributionResponse struct {
 }
 
 type DataResponse []struct {
-	Key   string `json:"key"`
-	Type  string `json:"type"`
-	Value string `json:"value"`
+	Key   string      `json:"key"`
+	Type  string      `json:"type"`
+	Value interface{} `json:"value"`
 }
 
 type DataKeyResponse struct {
-	Key   string `json:"key"`
-	Type  string `json:"type"`
-	Value int    `json:"value"`
+	Key   string      `json:"key"`
+	Type  string      `json:"type"`
+	Value interface{} `json:"value"`
 }
 
 type UtilsHashSecureResponse struct {
